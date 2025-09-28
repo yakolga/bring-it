@@ -64,6 +64,67 @@ class Slider {
   }
 }
 
+/***/ }),
+
+/***/ "./src/js/modules/ytVideo.js":
+/*!***********************************!*\
+  !*** ./src/js/modules/ytVideo.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ YtVideo)
+/* harmony export */ });
+class YtVideo {
+  constructor(triggers, overlay) {
+    this.btns = document.querySelectorAll(triggers);
+    this.overlay = document.querySelector(overlay);
+    this.close = this.overlay.querySelector('.close');
+  }
+  createPlayer(url) {
+    this.player = new YT.Player('frame', {
+      height: '360',
+      width: '640',
+      videoId: url
+    });
+    this.overlay.style.display = 'flex';
+  }
+  closePlayer() {
+    this.close.addEventListener('click', () => {
+      this.overlay.style.display = 'none';
+      this.player.stopVideo();
+    });
+    this.overlay.addEventListener('click', e => {
+      if (e.target === this.overlay) {
+        this.overlay.style.display = 'none';
+        this.player.stopVideo();
+      }
+    });
+  }
+  bindTriggers() {
+    this.btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (document.querySelector('iframe#frame')) {
+          this.overlay.style.display = 'flex';
+        } else {
+          this.url = btn.getAttribute('data-url');
+          this.createPlayer(this.url);
+        }
+      });
+    });
+  }
+  play() {
+    const tag = document.createElement('script');
+    tag.id = 'iframe-demo';
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    this.bindTriggers();
+    this.closePlayer();
+  }
+}
+
 /***/ })
 
 /******/ 	});
@@ -130,10 +191,14 @@ var __webpack_exports__ = {};
   \************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
+/* harmony import */ var _modules_ytVideo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/ytVideo */ "./src/js/modules/ytVideo.js");
+
 
 window.addEventListener('DOMContentLoaded', () => {
   const slider = new _modules_slider__WEBPACK_IMPORTED_MODULE_0__["default"]('.page', '.next');
   slider.render();
+  const ytVide = new _modules_ytVideo__WEBPACK_IMPORTED_MODULE_1__["default"]('.showup .play', '.overlay');
+  ytVide.play();
 });
 })();
 
