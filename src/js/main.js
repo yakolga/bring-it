@@ -1,6 +1,7 @@
 import MainSlider from "./modules/slider/slider-main";
 import MiniSlider from "./modules/slider/slider-mini";
 import YtVideo from "./modules/ytVideo";
+import Difference from "./modules/difference";
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({container: '.page', btns: '.next'});
@@ -37,4 +38,10 @@ window.addEventListener('DOMContentLoaded', () => {
         autoplay: true,
     });
     feedSlider.init();
+
+    const officerOld = new Difference('.officerold', '.officer__card-item');
+    officerOld.render();
+
+    const officerNew = new Difference('.officernew', '.officer__card-item');
+    officerNew.render();
 });

@@ -53,7 +53,7 @@ export default class MiniSlider extends Slider {
         });
 
         this.next.addEventListener('click', () => {
-            nextSlide();
+            this.nextSlide();
         });
 
         if (this.autoplay) {
