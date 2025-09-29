@@ -8,6 +8,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({container: '.page', btns: '.next'});
     slider.render();
 
+    const modulesMainSlider = new MainSlider({container: '.moduleapp', btns: '.next'});
+    modulesMainSlider.render();
+
     const ytVide = new YtVideo('.showup .play', '.overlay');
     ytVide.play();
 
