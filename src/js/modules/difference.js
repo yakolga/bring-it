@@ -1,8 +1,10 @@
 export default class Difference {
     constructor(container, items) {
-        this.container = document.querySelector(container);
-        this.items = this.container.querySelectorAll(items);
-        this.counter = 0;
+        try {
+            this.container = document.querySelector(container);
+            this.items = this.container.querySelectorAll(items);
+            this.counter = 0;
+        } catch(e) {}
     }
 
     hideAllItems() {
@@ -26,7 +28,9 @@ export default class Difference {
     }
 
     render() {
-        this.hideAllItems();
-        this.bindTriggers();
+        try {
+            this.hideAllItems();
+            this.bindTriggers();
+        } catch(e){}
     }
 }
