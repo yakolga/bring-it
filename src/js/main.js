@@ -3,6 +3,8 @@ import MiniSlider from "./modules/slider/slider-mini";
 import YtVideo from "./modules/ytVideo";
 import Difference from "./modules/difference";
 import Forms from "./modules/forms";
+import Accordion from "./modules/accordion";
+import Download from "./modules/download";
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({container: '.page', btns: '.next'});
@@ -11,8 +13,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const modulesMainSlider = new MainSlider({container: '.moduleapp', btns: '.next'});
     modulesMainSlider.render();
 
-    const ytVide = new YtVideo('.showup .play', '.overlay');
-    ytVide.play();
+    new YtVideo('.showup .play', '.overlay').play();
+    new YtVideo('.module__video-item .play', '.overlay').play();
 
     const showUpSlider = new MiniSlider({
         container: '.showup__content-slider',
@@ -50,4 +52,6 @@ window.addEventListener('DOMContentLoaded', () => {
     officerNew.render();
 
     new Forms('form').init();
+    new Accordion('.module__info-show', '.msg').init();
+    new Download('.download').init();
 });
