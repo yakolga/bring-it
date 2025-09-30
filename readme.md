@@ -4,7 +4,7 @@ This project extends static HTML/CSS with **native ES6 JavaScript** and modular 
 All functionality is bundled (Gulp) and tested across modern browsers + IE11 (via polyfills).
 
 ## Live demo
-[Bring it demo](https://github.com/user/repo/blob/branch/other_file.md)
+[Bring it live demo](https://yakolga.github.io/bring-it/dist/)
 
 ## Features
 - **Sliders**: fullscreen, looping, autoplay, active/inactive states.
