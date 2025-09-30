@@ -1,9 +1,8 @@
-export default class Slider {
-    constructor(page, btns){
-        this.page = document.querySelector(page);
-        this.btns = document.querySelectorAll(btns);
-        this.slides = Array.from(this.page.children);
-        this.slideIndex = 1;
+import Slider from "./slider";
+
+export default class MainSlider extends Slider {
+    constructor(btns) {
+        super(btns);
     }
 
     showSlides(n) {
@@ -28,22 +27,18 @@ export default class Slider {
             }
         } catch (e) {}
 
-        this.slides.forEach(slide => {
+        Array.from(this.slides).forEach(slide => {
             slide.style.display = 'none';
         });
 
-        this.slides[this.slideIndex - 1].style.display = 'block';
+        Array.from(this.slides)[this.slideIndex - 1].style.display = 'block';
     }
 
     plusSlides(n) {
         this.showSlides(this.slideIndex += n);
     }
 
-    render() {
-        try {
-            this.hanson = document.querySelector('.hanson');
-        } catch (e) {}
-
+    bindTriggers() {
         this.btns.forEach(btn => {
             btn.addEventListener('click', () => {
                 this.plusSlides(1);
@@ -56,6 +51,21 @@ export default class Slider {
             });
         });
 
-        this.showSlides(this.slideIndex);
+        document.querySelectorAll('.prevmodule').forEach(module => {
+            module.addEventListener('click', (e) => {
+                this.plusSlides(-1);
+            });
+        });
+    }
+
+    render() {
+        if (this.container) {
+            try {
+                this.hanson = document.querySelector('.hanson');
+            } catch (e) {}
+
+            this.showSlides(this.slideIndex);
+            this.bindTriggers();
+        }
     }
 }
